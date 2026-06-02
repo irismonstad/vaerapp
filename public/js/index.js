@@ -71,9 +71,20 @@ async function hentTemperatur(stasjonId) {
             return;
         }
 
-        temperaturer = respons.data[0].observations;
-        sistetemperatur = temperaturer[temperaturer.length - 1];
-        temperatur = sistetemperatur.value;
+
+        let temparray = []
+        let timearray = []
+
+        for (instans of respons.data) {
+            const temp = instans.observations[0].value;
+            const time = instans.referenceTime;
+            temparray.push(temp);
+            timearray.push(time);
+        }
+        console.log(temparray, timearray);
+
+        const sistetemperatur = respons.data[respons.data.length - 1].observations[0];
+        const temperatur = sistetemperatur.value;
         console.log(temperatur);
         temperaturEl.innerHTML = `<p>Temperatur nå: ${temperatur} C</p>`
     }

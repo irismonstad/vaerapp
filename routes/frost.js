@@ -32,7 +32,14 @@ router.get('/temperatur', async (req, res) => {
     try {
         const headers = getHeaders();
         const stasjonId = req.query.id;
-        const tidsrom = '2026-06-01/2026-06-02';
+
+        const tidNaa = new Date();
+        const tid24Siden = new Date(tidNaa.getTime() - (24 * 60 * 60* 1000));
+
+        const fraTid = tid24Siden.toISOString().slice(0, 16);
+        const tilTid = tidNaa.toISOString().slice(0, 16);
+        
+        const tidsrom = `${fraTid}/${tilTid}`;
         const url = `https://frost.met.no/observations/v0.jsonld?sources=${stasjonId}&elements=air_temperature&referencetime=${tidsrom}`;
         
         const resultat = await fetch(url, { headers });
