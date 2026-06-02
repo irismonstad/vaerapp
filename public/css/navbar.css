@@ -17,12 +17,3 @@
     font-style: bold;
     font-size:x-large;          
 }
-
-.lenker li a:hover {
-    color: rgb(37, 38, 42);
-}
-
-.globalnav {
-    position: relative;
-    z-index: 1000;
-}

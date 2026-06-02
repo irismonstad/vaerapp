@@ -36,6 +36,7 @@ router.get('/temperatur', async (req, res) => {
         const tidNaa = new Date();
         const tid24Siden = new Date(tidNaa.getTime() - (24 * 60 * 60* 1000));
 
+        // ISOString: YYYY-MM-DDTHH:mm:ss.sssZ
         const fraTid = tid24Siden.toISOString().slice(0, 16);
         const tilTid = tidNaa.toISOString().slice(0, 16);
         

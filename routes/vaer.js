@@ -7,6 +7,7 @@ router.post('/lagreStasjon', (req, res) => {
         return res.status(401).send("Ikke innlogget");
     }
 
+    // Henter brukerId fra session
     const brukerId = req.session.brukerId;
 
     try {
