@@ -12,11 +12,6 @@ const stasjonEl = document.querySelector("#stasjon");
 const dropdownEl = document.querySelector("#dropdown");
 dropdownEl.addEventListener("change", fyllStatistikk);
 
-// 
-// let navn = "";
-// let id = "";
-// let lengdegrad = 0;
-// let breddegrad = 0;
 
 async function sokStasjon(e) {
     e.preventDefault();

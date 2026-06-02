@@ -21,7 +21,7 @@ async function login(e) {
     // Hvis brukeren "godkjennes" får den en velkomstmelding, ellers en melding om feil mail eller passord
     if (res.ok) {
         const data = await res.json();
-        alert(`Velkommen, ${data.fornavn}!`);
+        alert(`Velkommen, ${data.brukernavn}!`);
         window.location.href = "../index.html"; 
     }
     else {

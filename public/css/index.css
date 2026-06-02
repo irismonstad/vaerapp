@@ -8,14 +8,12 @@ body, html {
     width: 100vw;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size:medium;
-    /* overflow: hidden; */
 
     display: grid;
     grid-template-rows:auto 1fr auto;
 }
 
 main {
-    /* padding:2em; */
     background-color: rgb(229, 236, 247);
     display:grid;
 
@@ -80,11 +78,9 @@ main > * {
     grid-area:statistikk;
     background-color: rgb(124, 161, 173);
     display: grid;
-    /* height:30vh; */
     grid-template-columns: 2fr 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas: "navn temperatur" "lokasjon temperatur"
-    /* padding-left: */
 }
 
 #navn_stasjon {
@@ -113,7 +109,6 @@ main > * {
     padding:0em;
     overflow: hidden;
     position: relative;
-    /* display: flex; */
 }
 
 #graph_buttons {
@@ -157,5 +152,5 @@ footer {
 }
 
 footer p {
-    margin: 0; /* Fjerner nettleserens standard margin som dytter på høyden */
+    margin: 0;
 }

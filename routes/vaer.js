@@ -23,8 +23,8 @@ router.post('/lagreStasjon', (req, res) => {
         console.log(`Lagret stasjon ${navn} til bruker ${brukerId}`);
     }
 
-    catch(err) {
-        console.error("Feil ved lagring av stasjon");
+    catch(error) {
+        console.error("Feil ved lagring av stasjon:", error);
         return res.status(500).json({error: "Kunne ikke lagre stasjon"});
     }
 });
