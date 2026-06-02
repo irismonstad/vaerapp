@@ -1,30 +1,29 @@
-require('dotenv').config();
 // Henter element for skjema og legger eventlistener på submit-knapp
-// skjema = document.querySelector("#sok");
-// skjema.addEventListener("submit", sokStasjon);
-// const temperaturEl = document.querySelector("#stat_temp");
+skjema = document.querySelector("#sok");
+skjema.addEventListener("submit", sokStasjon);
+const temperaturEl = document.querySelector("#stat_temp");
 
-// const stasjonEl = document.querySelector("#stasjon");
+const stasjonEl = document.querySelector("#stasjon");
 
 let navn = "";
 let id = "";
 let lengdegrad = 0;
 let breddegrad = 0;
 
-async function sokStasjon() {
-    // e.preventDefault();
+async function sokStasjon(e) {
+    e.preventDefault();
     // Henter ut teksten fra søkefeltet
-    // const stasjonSok = stasjonEl.value.trim();
-    stasjonSok = "Bergen - Florida";
+    const stasjonSok = stasjonEl.value.trim();
+    // stasjonSok = "Bergen - Florida";
 
-    const clientId = process.env.FROSTAPI;
-    const base64Credentials = Buffer.from(`${clientId}:`).toString('base64');
+    // const clientId = process.env.FROSTAPI;
+    // const base64Credentials = Buffer.from(`${clientId}:`).toString('base64');
 
-    const headers = {
-        'Authorization': `Basic ${base64Credentials}`
-    };
+    // const headers = {
+    //     'Authorization': `Basic ${base64Credentials}`
+    // };
 
-    const resultat = await fetch(`https://frost.met.no/sources/v0.jsonld?municipality=bergen&name=${stasjonSok}`, {headers});
+    const resultat = await fetch(`/frost/sok?navn=${stasjonSok}`);
     const respons = await resultat.json();
 
     // console.log(respons);
@@ -41,20 +40,20 @@ async function sokStasjon() {
 
 async function fyllTopBar() {
     // e.preventDefault();
-    const clientId = process.env.FROSTAPI;
-    const base64Credentials = Buffer.from(`${clientId}:`).toString('base64');
-    const headers = {
-        'Authorization': `Basic ${base64Credentials}`
-    };
+    // const clientId = process.env.FROSTAPI;
+    // const base64Credentials = Buffer.from(`${clientId}:`).toString('base64');
+    // const headers = {
+    //     'Authorization': `Basic ${base64Credentials}`
+    // };
 
-    const resultat = await fetch(`https://frost.met.no/observations/v0.jsonld?sources=${id}&referencetime=latest&elements=air_temperature`, {headers});
+    const resultat = await fetch(`/frost/temperatur?id=${id}`);
     const respons = await resultat.json();
 
-    // console.log(respons);
+    console.log(respons);
 
     temperatur = respons.data[0].observations[0].value;
     console.log(temperatur);
-    // temperaturEl.innerHTML = `<p>Temperatur nå: ${temperatur} C<p>`
+    temperaturEl.innerHTML = `<p>Temperatur nå: ${temperatur} C<p>`
 
 };
-sokStasjon();
+// sokStasjon();

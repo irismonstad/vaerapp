@@ -24,10 +24,12 @@ app.use(express.json());
 // Importerer rutene fra rutefilene
 const brukerRuter = require('./routes/bruker');
 const vaerRuter = require('./routes/vaer');
+const frostRuter = require('./routes/frost');
 
 // Bruker rutene fra rutefilene, alle ruter for adresser faller under /api/rute.., mens alle ruter for brukere faller under /rute..
 app.use('/', brukerRuter);
 app.use('/api', vaerRuter);
+app.use('/frost', frostRuter);
 
 // Gjør index.html til "hjemmesiden" -> den som vises på localhost:3000
 app.get('/', (req, res) => {
