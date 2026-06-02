@@ -4,6 +4,7 @@ skjema.addEventListener("submit", sokStasjon);
 const temperaturEl = document.querySelector("#stat_temp");
 
 const stasjonEl = document.querySelector("#stasjon");
+const dropdownEl = document.querySelector("#station");
 
 let navn = "";
 let id = "";
@@ -47,3 +48,20 @@ async function fyllTopBar() {
     temperaturEl.innerHTML = `<p>Temperatur nå: ${temperatur} C<p>`
 
 };
+
+async function fyllDropdown() {
+    const resultat = await fetch('/api/hentStasjoner');
+    const respons = await resultat.json();
+
+    console.log(respons);
+
+    for (const stasjon of respons) {
+        let element = document.createElement('option');
+        element.innerHTML = stasjon.navn;
+        element.value = stasjon.id;
+        dropdownEl.appendChild(element);
+    }
+    
+}
+
+window.addEventListener("DOMContentLoaded", fyllDropdown);
