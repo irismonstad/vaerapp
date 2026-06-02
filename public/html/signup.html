@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/css/navbar.css">
+    <script src="/js/navbar.js" defer></script>
+    <link rel="stylesheet" href="../css/brukerskjema.css">
+    <script src="../js/signup.js" defer></script>
+</head>
+<body>
+    <div id="main">
+        <figure id="house">
+            <img src="../bilder/hus.png" alt="Hus med et smilefjes inni" width="700">
+        </figure>
+        <form id="skjema">
+            <h1>Opprett bruker </h1>
+
+            <label for="mail">Mail: </label>
+            <input type="email" id="mail" required>
+
+            <label for="brukernavn">Brukernavn: </label>
+            <input type="text" id="brukernavn" required>
+            
+            <label for="passord">Passord: </label>
+            <input type="password" id="passord" required>
+
+            <button type="submit">Opprett bruker</button>
+        </form>
+    </div>
+</body>
+</html>

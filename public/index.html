@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hjem</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <script src="js/navbar.js" defer></script>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/index.js"defer></script>
+</head>
+<body>
+    <main>
+        <section id="topbar">
+            <form id="sok">
+                <label for="stasjon" id="stasjonlabel">Søk på stasjon: </label>
+                <input type="text" id="stasjon" placeholder="Søk...">
+                <button type="submit" id="sokknapp">&#x2315;</button>
+            </form>
+            <select name="station"></select>
+            <div id="stat_weather">Temperatur nå: </div>
+        </section>
+        <section id="data">
+            <div id="graph_area" class="data_div">
+                <div id="graph_buttons">
+                    <button id="graph_temp">Temp</button>
+                    <button id="graph_airq">Luft</button>
+                    <button id="graph_precip">Nedbør</button>
+                    <button id="graph_humid">Fukt</button>
+                </div>
+                <figure id="graph">ddd</figure>
+            </div>
+            <div id="map_area" class="data_div">
+                <div id="location">
+                    <p id="lat">Lengdegrad: </p>
+                    <p id="lon">Breddegrad: </p>
+                </div>
+                <figure id="map">ddd</figure>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

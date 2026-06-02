@@ -1,0 +1,27 @@
+.lenker {
+    display:flex;
+    background-color: #99AD7A;
+    width:100%;
+    justify-content:space-evenly;
+    gap:1em;
+    padding:1em;
+    margin:0;
+    list-style-type:none;
+    border:1px solid #546B41;
+}
+
+.lenker li a {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color:#141c0d;
+    text-decoration: none;
+    font-style: bold;
+}
+
+.lenker li a:hover {
+    color: rgb(2, 68, 2);
+}
+
+.globalnav {
+    position: relative;
+    z-index: 1000;
+}

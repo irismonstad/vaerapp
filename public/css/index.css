@@ -1,0 +1,41 @@
+body, html {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+main {
+    padding:1em;
+}
+
+#topbar {
+    background-color: yellow;
+    padding:1em;
+    display: flex;
+    flex-direction: row;
+    gap:1em;
+    justify-content: space-evenly;
+}
+
+#data {
+    background-color: lightgreen;
+    padding:1em;
+    display:flex;
+    justify-content: space-evenly;
+    /* grid-template-columns: 2fr 1fr; */
+}
+
+figure {
+    height: 50vh;
+    width: 50vh;
+    background-color: #ca8181;
+}
+
+#location {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.data_div > div {
+    height:2em;
+}
