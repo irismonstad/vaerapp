@@ -2,17 +2,21 @@
 skjema = document.querySelector("#sok");
 skjema.addEventListener("submit", sokStasjon);
 
+// Element for å fylle inn nåværende temperatur
 const temperaturEl = document.querySelector("#stat_temp");
 
+// Søkefeltet
 const stasjonEl = document.querySelector("#stasjon");
 
+// Dropdown-menyen
 const dropdownEl = document.querySelector("#dropdown");
-dropdownEl.addEventListener("change", hentTemperatur);
+dropdownEl.addEventListener("change", fyllStatistikk);
 
-let navn = "";
-let id = "";
-let lengdegrad = 0;
-let breddegrad = 0;
+// 
+// let navn = "";
+// let id = "";
+// let lengdegrad = 0;
+// let breddegrad = 0;
 
 async function sokStasjon(e) {
     e.preventDefault();
@@ -30,12 +34,12 @@ async function sokStasjon(e) {
         }
 
         // Oppdaterer dataverdiene for adressen
-        id = respons.data[0].id;
-        navn = respons.data[0].name;
-        lengdegrad = respons.data[0].geometry.coordinates[0];
-        breddegrad = respons.data[0].geometry.coordinates[1];
+        const id = respons.data[0].id;
+        const navn = respons.data[0].name;
+        const lengdegrad = respons.data[0].geometry.coordinates[0];
+        const breddegrad = respons.data[0].geometry.coordinates[1];
 
-        hentTemperatur(id);
+        fyllStatistikk(id);
 
         console.log(id, navn, lengdegrad, breddegrad);
 
@@ -52,13 +56,34 @@ async function sokStasjon(e) {
     }  
 };
 
-async function hentTemperatur(stasjonId) {
+async function fyllStatistikk(stasjonId) {
     const dropdown_id = dropdownEl.value;
 
     // Sjekker om stasjonId eksisterer, og om stasjonId har en .target attributt (er da et event-objekt fra dropdown meny), hvis ja, bruk dropdown valg, hvis ikke bruk søket
     const aktivId = (stasjonId && stasjonId.target) ? dropdownEl.value : (stasjonId || dropdownEl.value);
     // Hvis det ikke er noe gyldig id, stopp funksjonen
     if (!aktivId) return;
+
+    try {
+        const resultat = await fetch(`/api/hentStasjon/${aktivId}`);
+        const respons = await resultat.json();
+
+        const navn = respons.navn;
+        const lengdegrad = respons.lengdegrad;
+        const breddegrad = respons.breddegrad;
+    
+        const navnEl = document.querySelector("#navn_stasjon");
+        navnEl.innerHTML = `${navn}` ;
+
+        const lengdegradEl = document.querySelector("#lengdegrad");
+        lengdegradEl.innerText = `Lengdegrader: ${lengdegrad}`;
+
+        const breddegradEl = document.querySelector("#breddegrad");
+        breddegradEl.innerHTML = `Breddegrader: ${breddegrad}`;
+    }
+    catch(error) {
+        console.error("Feil under display av statistikk:", error);
+    }
 
     try {
         const resultat = await fetch(`/frost/temperatur?id=${aktivId}`);
@@ -81,17 +106,53 @@ async function hentTemperatur(stasjonId) {
             temparray.push(temp);
             timearray.push(time);
         }
+        lagGraf(timearray, temparray);
         console.log(temparray, timearray);
 
         const sistetemperatur = respons.data[respons.data.length - 1].observations[0];
         const temperatur = sistetemperatur.value;
         console.log(temperatur);
-        temperaturEl.innerHTML = `<p>Temperatur nå: ${temperatur} C</p>`
+        temperaturEl.innerHTML = `<h1>${temperatur}°C</h1>`
     }
     catch (error) {
         console.error("Feil under henting av temperatur:", error);
         temperaturEl.innerHTML = `<p>Kunne ikke hente</p>`
     }
+};
+
+function lagGraf(timearray, temparray) {
+    const container = document.querySelector('#graph');
+    container.innerHTML = '';
+
+    const nyCanvas = document.createElement('canvas');
+    nyCanvas.id = 'tempGraf';
+
+    container.appendChild(nyCanvas);
+
+    const ctx = nyCanvas.getContext('2d');
+
+    graf = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels : timearray.map(tid => tid.slice(11,16)),
+            datasets : [{
+                label: 'Temperatur over det siste døgnet i °C',
+                data: temparray,
+                borderColor: 'rgb(75, 192, 192)',
+                fill:true
+
+            }]
+        },
+        options: {
+            responsive:true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: false 
+                }
+            }
+        }
+    }); 
 };
 
 async function fyllDropdown() {

@@ -46,9 +46,25 @@ router.get('/hentStasjoner', (req, res) => {
         res.json(rows);
     }
 
-    catch(err) {
-        console.error("Feil ved henting av stasjoner", err);
+    catch(error) {
+        console.error("Feil ved henting av stasjoner", error);
         res.status(500).json({error: "Kunne ikke hente stasjoner"});
+    }
+});
+
+router.get('/hentStasjon/:id', (req, res) => {
+    const id = req.params.id;
+    try {
+        const rows = db.prepare(`
+            SELECT v.navn, v.lengdegrad, v.breddegrad
+            FROM Vaerstasjon v
+            WHERE v.id = ?`).get(id);
+        
+        res.json(rows);
+    }
+    catch(error) {
+        console.error("Feil ved henting av stasjon", error);
+        res.status(500).json({error: "Kunne ikke hente stasjon"});
     }
 });
 

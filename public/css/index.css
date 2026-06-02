@@ -1,41 +1,161 @@
+* {
+    box-sizing: border-box;
+}
 body, html {
     margin:0;
     padding:0;
-    height:100%;
+    height:100vh;
+    width: 100vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:medium;
+    /* overflow: hidden; */
+
+    display: grid;
+    grid-template-rows:auto 1fr auto;
 }
 
 main {
-    padding:1em;
-}
+    /* padding:2em; */
+    background-color: rgb(229, 236, 247);
+    display:grid;
 
-#topbar {
-    background-color: yellow;
-    padding:1em;
-    display: flex;
-    flex-direction: row;
-    gap:1em;
-    justify-content: space-evenly;
-}
+    height:100%;
+    width: 100%;
 
-#data {
-    background-color: lightgreen;
-    padding:1em;
-    display:flex;
-    justify-content: space-evenly;
-    /* grid-template-columns: 2fr 1fr; */
-}
-
-figure {
-    height: 50vh;
-    width: 50vh;
-    background-color: #ca8181;
-}
-
-#location {
-    display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 2fr;
+
+    grid-template-areas: "valg statistikk" "graf graf";
+    gap:1em;
+    padding:1em;
 }
 
-.data_div > div {
-    height:2em;
+main > * {
+    padding:1em;
+    border-radius: 5px;
+}
+
+.valg {
+    grid-area:valg;
+    background-color: rgb(124, 161, 173);
+    display:flex;
+    flex-direction: column;
+    gap:1em;
+    justify-content: center;
+}
+
+.valg > * {
+    width:100%;
+    height: 50%;
+    font-size:large;
+}
+
+#sok {
+    display: flex;
+}
+
+#stasjon {
+    flex-grow:1;
+    border:1px solid black;
+    border-radius: 5px 0 0 5px;
+    background-color: rgb(235, 231, 227);
+    font-size:large;
+}
+
+#dropdown {
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: rgb(235, 231, 227);
+}
+
+#sokknapp {
+    width:3em;
+    border:1px solid black;
+    border-left:none;
+    border-radius:0 5px 5px 0;
+    font-size:xx-large;
+}
+
+.statistikk {
+    grid-area:statistikk;
+    background-color: rgb(124, 161, 173);
+    display: grid;
+    /* height:30vh; */
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "navn temperatur" "lokasjon temperatur"
+    /* padding-left: */
+}
+
+#navn_stasjon {
+    grid-area:navn;
+    font-size:2.5rem;
+}
+
+#lokasjon {
+    grid-area:lokasjon;
+    font-size:1.5rem;
+}
+
+#stat_temp {
+    grid-area:temperatur;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: bold;
+    font-size:2.5rem;
+
+}
+
+.data {
+    grid-area:graf;
+    background-color: rgb(194, 194, 194);
+    padding:0em;
+    overflow: hidden;
+    position: relative;
+    /* display: flex; */
+}
+
+#graph_buttons {
+    position: absolute;
+    top:10px;
+    right:10px;
+    z-index: 10;
+    display: flex;
+    gap:.5em;
+}
+
+#graph_buttons button {
+    background-color: rgba(229, 243, 255, 0.849);
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    padding: .5em;
+}
+
+#graph {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin:0;
+
+}
+
+#graph canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+footer {
+    background-color: rgb(204, 212, 224);
+    padding:.5em;
+    text-align: center;
+    font-size: small;
+    border-top:1px solid black;
+}
+
+footer p {
+    margin: 0; /* Fjerner nettleserens standard margin som dytter på høyden */
 }

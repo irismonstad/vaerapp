@@ -2,9 +2,9 @@
 const navHTML = 
 `<nav class="globalnav">
     <ul class="lenker">
-        <li><a href="/">Hjem</a></li>
-        <li><a href="/html/login.html">Login</a></li>
-        <li><a href="/html/signup.html">Signup</a></li>
+        <li><a href="/" tabindex="0">Hjem</a></li>
+        <li><a href="/html/login.html" tabindex="0">Login</a></li>
+        <li><a href="/html/signup.html" tabindex="0">Signup</a></li>
     </ul>
 </nav>`;
 

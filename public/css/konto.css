@@ -1,0 +1,46 @@
+body, html {
+    margin:0;
+    padding:0;
+    height:100vh;
+    width:100vw;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgb(229, 236, 247);
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    place-items: center;
+}
+
+.globalnav {
+    justify-self: stretch;
+}
+
+#main {
+    display:grid;
+    place-items: center;
+    height:100%;
+    width:100%;
+    padding:2em;
+    background-color: rgb(229, 236, 247);
+}
+
+form {
+    display:flex;
+    flex-direction: column;
+    padding:2em;
+    margin:auto;
+    gap:1em;
+    width:30vw;
+    min-width:300px;
+    border:1px solid black;
+    background-color: rgb(124, 161, 173);
+    border-radius: 5px;
+
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #999;
+    border-radius: 5px;
+}

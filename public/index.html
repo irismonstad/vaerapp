@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hjem</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="css/navbar.css">
     <script src="js/navbar.js" defer></script>
     <link rel="stylesheet" href="css/index.css">
@@ -11,33 +12,37 @@
 </head>
 <body>
     <main>
-        <section id="topbar">
+        <section class="valg">
             <form id="sok">
-                <label for="stasjon" id="stasjonlabel">Søk på stasjon: </label>
-                <input type="text" id="stasjon" placeholder="Søk...">
+                <label for="stasjon" id="stasjonlabel" hidden>Søk på værstasjon: </label>
+                <input type="text" id="stasjon" placeholder="Søk på en værstasjon...">
                 <button type="submit" id="sokknapp">&#x2315;</button>
             </form>
-            <select id="dropdown" name="dropdown"></select>
-            <div id="stat_temp">Temperatur nå: </div>
+            <select id="dropdown" name="dropdown">
+                <option>Velg en værstasjon...</option>
+            </select>
         </section>
-        <section id="data">
+        <section class="statistikk">
+            <h1 id="navn_stasjon">Målestasjon</h1>
+            <div id="lokasjon">
+                <h3 id="lengdegrad">Lengdegrader: </h3>
+                <h3 id="breddegrad">Breddegrader: </h3>
+            </div>
+            <div id="stat_temp">Temperatur</div>
+        </section>
+        <section class="data">
             <div id="graph_area" class="data_div">
                 <div id="graph_buttons">
                     <button id="graph_temp">Temp</button>
                     <button id="graph_airq">Luft</button>
-                    <button id="graph_precip">Nedbør</button>
-                    <button id="graph_humid">Fukt</button>
                 </div>
-                <figure id="graph">ddd</figure>
-            </div>
-            <div id="map_area" class="data_div">
-                <div id="location">
-                    <p id="lat">Lengdegrad: </p>
-                    <p id="lon">Breddegrad: </p>
-                </div>
-                <figure id="map">ddd</figure>
+                <figure id="graph">Velg en stasjon!</figure>
             </div>
         </section>
     </main>
+    <footer>
+        <p>Alle data er hentet fra Meteorologisk institutt</p>
+    </footer>
+    
 </body>
 </html>

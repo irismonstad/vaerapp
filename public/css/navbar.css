@@ -1,13 +1,13 @@
 .lenker {
     display:flex;
-    background-color: #99AD7A;
+    background-color: rgb(204, 212, 224);
     width:100%;
     justify-content:space-evenly;
     gap:1em;
     padding:1em;
     margin:0;
     list-style-type:none;
-    border:1px solid #546B41;
+    border:1px solid #4e4e4e;
 }
 
 .lenker li a {
@@ -15,10 +15,11 @@
     color:#141c0d;
     text-decoration: none;
     font-style: bold;
+    font-size:x-large;          
 }
 
 .lenker li a:hover {
-    color: rgb(2, 68, 2);
+    color: rgb(37, 38, 42);
 }
 
 .globalnav {
